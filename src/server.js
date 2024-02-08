@@ -1,4 +1,4 @@
-import { startServer } from "./app.js";
+import { startServer } from "./app";
 
 // Function to check if the flag is present
 const isFlagPresent = (flag) => process.argv.includes(flag);

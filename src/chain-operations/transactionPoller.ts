@@ -1,9 +1,9 @@
 import { AbiCoder, EventLog } from "ethers";
-import { connectDB } from "../db/config/mongoose.ts";
-import { withGlobalTransaction } from "../db/operations/atomic.ts";
+import { connectDB } from "../db/config/mongoose";
+import { withGlobalTransaction } from "../db/operations/atomic";
 import { readAllIssuers } from "../db/operations/read.js";
 import { updateIssuerById } from "../db/operations/update.js";
-import { getIssuerContract } from "../utils/caches.ts";
+import { getIssuerContract } from "../utils/caches";
 import sleep from "../utils/sleep.js";
 import { verifyIssuerAndSeed } from "./seed.js";
 import {
@@ -62,9 +62,7 @@ export const txTypes = Object.fromEntries(
     Object.entries(txMapper).map(([i, [_, f]]) => [i, f.name.replace("handle", "")])
 );
 // (name => handler) derived from txMapper
-export const txFuncs = Object.fromEntries(
-    Object.entries(txMapper).map(([i, [_, f]]) => [txTypes[i], f])
-);
+export const txFuncs = Object.fromEntries(Object.entries(txMapper).map(([i, [_, f]]) => [txTypes[i], f]));
 
 let _keepProcessing = true;
 let _finishedProcessing = false;
@@ -74,7 +72,7 @@ export const stopEventProcessing = async () => {
     while (!_finishedProcessing) {
         await sleep(50);
     }
-}
+};
 
 export const pollingSleepTime = 1000;
 
@@ -100,8 +98,8 @@ const processEvents = async (dbConn, contract, provider, issuer, txHelper, final
     /*
     We process up to `maxEvents` across `maxBlocks` to ensure our transaction sizes dont get too big and bog down our db
     */
-    let {_id: issuerId, last_processed_block: lastProcessedBlock, tx_hash: deployedTxHash} = issuer;
-    const {number: latestBlock} = await provider.getBlock(finalizedOnly ? "finalized" : "latest");
+    let { _id: issuerId, last_processed_block: lastProcessedBlock, tx_hash: deployedTxHash } = issuer;
+    const { number: latestBlock } = await provider.getBlock(finalizedOnly ? "finalized" : "latest");
     // console.log("Processing for issuer", {issuerId, lastProcessedBlock, deployedTxHash, latestBlock});
     if (lastProcessedBlock === null) {
         const receipt = await provider.getTransactionReceipt(deployedTxHash);
@@ -110,7 +108,7 @@ const processEvents = async (dbConn, contract, provider, issuer, txHelper, final
             return;
         }
         if (receipt.blockNumber > latestBlock) {
-            console.log("Deployment tx not finalized", {receipt, lastFinalizedBlock: latestBlock});
+            console.log("Deployment tx not finalized", { receipt, lastFinalizedBlock: latestBlock });
             return;
         }
         lastProcessedBlock = await issuerDeployed(issuerId, receipt, contract, dbConn);
@@ -120,7 +118,7 @@ const processEvents = async (dbConn, contract, provider, issuer, txHelper, final
     if (startBlock >= endBlock) {
         return;
     }
-    
+
     // console.log(" processing from", { startBlock, endBlock });
     let events: QueuedEvent[] = [];
 
@@ -129,7 +127,7 @@ const processEvents = async (dbConn, contract, provider, issuer, txHelper, final
         const type = event?.fragment?.name;
         if (contractFuncs.has(type)) {
             const { timestamp } = await provider.getBlock(event.blockNumber);
-            events.push({type, timestamp, data: event.args[0], o: event });
+            events.push({ type, timestamp, data: event.args[0], o: event });
         }
     }
 
@@ -161,13 +159,13 @@ const processEvents = async (dbConn, contract, provider, issuer, txHelper, final
 };
 
 const issuerDeployed = async (issuerId, receipt, contract, dbConn) => {
-    console.log("New issuer was deployed", {issuerId});
+    console.log("New issuer was deployed", { issuerId });
     const events = await contract.queryFilter(contract.filters.IssuerCreated);
     if (events.length === 0) {
         throw new Error(`No issuer events found!`);
     }
     const issuerCreatedEventId = events[0].args[0];
-    console.log("IssuerCreated event captured!", {issuerCreatedEventId});
+    console.log("IssuerCreated event captured!", { issuerCreatedEventId });
     const lastProcessedBlock = receipt.blockNumber - 1;
     await withGlobalTransaction(async () => {
         await verifyIssuerAndSeed(contract, issuerCreatedEventId);
@@ -180,7 +178,7 @@ const persistEvents = async (issuerId, events: QueuedEvent[]) => {
     // Persist all the necessary changes for each event gathered in process events
     console.log(`${events.length} events to process for issuerId ${issuerId}`);
     for (const event of events) {
-        const {type, data, timestamp} = event;
+        const { type, data, timestamp } = event;
         const txHandleFunc = txFuncs[type];
         // console.log("persistEvent: ", {type, data, timestamp});
         if (txHandleFunc) {
@@ -202,7 +200,7 @@ export const trimEvents = (origEvents: QueuedEvent[], maxEvents, endBlock) => {
     // Sort for correct execution order
     let events = [...origEvents];
     events.sort((a, b) => a.o.blockNumber - b.o.blockNumber || a.o.transactionIndex - b.o.transactionIndex || a.o.index - b.o.index);
-    let index = 0;    
+    let index = 0;
     while (index < maxEvents && index < events.length) {
         // Include the entire next block
         const includeBlock = events[index].o.blockNumber;
@@ -221,7 +219,6 @@ export const trimEvents = (origEvents: QueuedEvent[], maxEvents, endBlock) => {
     return [useEvents, useEvents[useEvents.length - 1].o.blockNumber];
 };
 
-
 const updateLastProcessed = async (issuerId, lastProcessedBlock) => {
-    return updateIssuerById(issuerId, {last_processed_block: lastProcessedBlock});
+    return updateIssuerById(issuerId, { last_processed_block: lastProcessedBlock });
 };

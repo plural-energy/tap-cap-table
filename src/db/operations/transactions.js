@@ -12,7 +12,7 @@ import * as ReturnToPool from "../objects/transactions/return_to_pool/index.js";
 import * as Split from "../objects/transactions/split/index.js";
 import * as Transfer from "../objects/transactions/transfer/index.js";
 import * as Vesting from "../objects/transactions/vesting/index.js";
-import { save } from "./atomic.ts";
+import { save } from "./atomic";
 
 const typeToModelType = {
     // Acceptance

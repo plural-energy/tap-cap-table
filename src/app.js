@@ -1,11 +1,11 @@
 import express, { json, urlencoded } from "express";
-import { connectDB } from "./db/config/mongoose.ts";
+import { connectDB } from "./db/config/mongoose";
 
-import { startEventProcessing, stopEventProcessing } from "./chain-operations/transactionPoller.ts";
+import { startEventProcessing, stopEventProcessing } from "./chain-operations/transactionPoller";
 
 // Routes
-import { capTable as capTableRoutes } from "./routes/capTable.ts";
-import { router as factoryRoutes } from "./routes/factory.ts";
+import { capTable as capTableRoutes } from "./routes/capTable";
+import { router as factoryRoutes } from "./routes/factory";
 import historicalTransactions from "./routes/historicalTransactions.js";
 import mainRoutes from "./routes/index.js";
 import issuerRoutes from "./routes/issuer.js";
@@ -19,7 +19,7 @@ import vestingTermsRoutes from "./routes/vestingTerms.js";
 
 import mongoose from "mongoose";
 import { readIssuerById } from "./db/operations/read.js";
-import { getIssuerContract } from "./utils/caches.ts";
+import { getIssuerContract } from "./utils/caches";
 import { setupEnv } from "./utils/env.js";
 
 setupEnv();
