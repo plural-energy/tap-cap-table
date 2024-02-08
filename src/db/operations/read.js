@@ -9,7 +9,7 @@ import Valuation from "../objects/Valuation.js";
 import VestingTerms from "../objects/VestingTerms.js";
 import StockIssuance from "../objects/transactions/issuance/StockIssuance.js";
 import StockTransfer from "../objects/transactions/transfer/StockTransfer.js";
-import { countDocuments, find, findById } from "./atomic.ts";
+import { countDocuments, find, findById } from "./atomic";
 
 // READ By ID
 export const readIssuerById = async (id) => {
@@ -90,8 +90,8 @@ export const getAllIssuerDataById = async (issuerId) => {
 
 export const readAllIssuers = async () => {
     return await find(Issuer);
-}
+};
 
 export const readfactories = async () => {
     return await find(Factory);
-}
+};

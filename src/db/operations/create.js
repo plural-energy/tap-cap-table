@@ -11,7 +11,7 @@ import ConvertibleIssuance from "../objects/transactions/issuance/ConvertibleIss
 import EquityCompensationIssuance from "../objects/transactions/issuance/EquityCompensationIssuance.js";
 import StockIssuance from "../objects/transactions/issuance/StockIssuance.js";
 import StockTransfer from "../objects/transactions/transfer/StockTransfer.js";
-import { save } from "./atomic.ts";
+import { save } from "./atomic";
 
 export const createIssuer = (issuerData) => {
     return save(new Issuer(issuerData));
@@ -63,4 +63,4 @@ export const createStockTransfer = (stockTransferData) => {
 
 export const createFactory = (factoryData) => {
     return save(new Factory(factoryData));
-}
+};
