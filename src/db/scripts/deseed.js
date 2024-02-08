@@ -1,4 +1,4 @@
-import { deseedDatabase } from "../../tests/integration/utils.ts";
+import { deseedDatabase } from "../../tests/integration/utils.js";
 
 const runDeseed = async () => {
     try {

@@ -1,11 +1,10 @@
 // Store a global mongo session to allows us to bundle CRUD operations into one transaction
 
 import { Connection, QueryOptions } from "mongoose";
-import { connectDB } from "../config/mongoose.ts";
+import { connectDB } from "../config/mongoose.js";
 type TQueryOptions = QueryOptions | null;
 
 let _globalSession = null;
-
 
 export const setGlobalSession = (session) => {
     if (_globalSession !== null) {

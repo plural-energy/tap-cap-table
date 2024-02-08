@@ -1,9 +1,9 @@
 import { AbiCoder, EventLog } from "ethers";
 import { connectDB } from "../db/config/mongoose.js";
-import { withGlobalTransaction } from "../db/operations/atomic.ts";
+import { withGlobalTransaction } from "../db/operations/atomic.js";
 import { readAllIssuers } from "../db/operations/read.js";
 import { updateIssuerById } from "../db/operations/update.js";
-import { getIssuerContract } from "../utils/caches.ts";
+import { getIssuerContract } from "../utils/caches.js";
 import sleep from "../utils/sleep.js";
 import { verifyIssuerAndSeed } from "./seed.js";
 import {

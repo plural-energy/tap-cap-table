@@ -1,5 +1,5 @@
 import { interpret } from "xstate";
-import { preProcessorCache } from "../utils/caches.ts";
+import { preProcessorCache } from "../utils/caches.js";
 import { parentMachine } from "./parent.js";
 
 /*
