@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { setupEnv } from "../utils/env";
+import { setupEnv } from "../utils/env.js";
 
 setupEnv();
 

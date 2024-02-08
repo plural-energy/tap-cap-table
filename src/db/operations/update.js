@@ -16,7 +16,7 @@ import StockReissuance from "../objects/transactions/reissuance/StockReissuance.
 import StockRepurchase from "../objects/transactions/repurchase/StockRepurchase.js";
 import StockRetraction from "../objects/transactions/retraction/StockRetraction.js";
 import StockTransfer from "../objects/transactions/transfer/StockTransfer.js";
-import { findByIdAndUpdate, findOne } from "./atomic";
+import { findByIdAndUpdate, findOne } from "./atomic.js";
 import { createFactory } from "./create.js";
 
 export const web3WaitTime = 5000;

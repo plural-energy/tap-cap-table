@@ -7,15 +7,17 @@ interface CachePayload {
 }
 
 // Centralized contract manager/cache
-const contractCache: {[key: string]: CachePayload} = {};
+const contractCache: { [key: string]: CachePayload } = {};
 
 export const getIssuerContract = async (issuer): Promise<CachePayload> => {
+    console.log("Getting issuer contract", issuer._id);
     if (!contractCache[issuer._id]) {
-        const { contract, provider, libraries } = await getContractInstance(issuer.deployed_to); 
+        const { contract, provider, libraries } = await getContractInstance(issuer.deployed_to);
         contractCache[issuer._id] = { contract, provider, libraries };
     }
+    console.log("Returning contract", contractCache[issuer._id]);
     return contractCache[issuer._id];
-}
+};
 
 /*
 issuerId = {
