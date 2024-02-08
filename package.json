@@ -7,8 +7,7 @@
     "description": "Transfer Agent Protocol onchain cap table",
     "type": "module",
     "scripts": {
-        "prod": "npx tsx src/server.js --finalized-only",
-        "dev": "npx tsx watch src/server.js",
+        "prod": "tsx src/server.js --finalized-only",
         "eslint": "eslint --cache --cache-location=node_modules/.cache/.eslintcache --fix",
         "lint": "yarn run eslint . --ext .js,.jsx,.ts,.tsx",
         "format": "prettier '**/*' --ignore-unknown --write",
@@ -17,12 +16,15 @@
         "prepare": "husky install",
         "deploy-factory": "./scripts/deployFactory.sh",
         "setup": "cd chain && foundryup && forge build --via-ir",
-        "deseed": "npx tsx src/db/scripts/deseed.js",
+        "deseed": "tsx src/db/scripts/deseed.js",
         "test": "cd chain && forge test",
         "test-js": "jest --testPathPattern src/tests/unit",
         "test-js-integration": "jest --testPathPattern src/tests/integration",
         "validate-poet-files": "cd ocf && yarn validate-poet-files",
-        "export-manifest": "cd src/db/samples && zip -r notPoet.zip notPoet && mv notPoet.zip $HOME/Downloads"
+        "export-manifest": "cd src/db/samples && zip -r notPoet.zip notPoet && mv notPoet.zip $HOME/Downloads",
+        "dev": "NODE_ENV=\"development\" nodemon --ext \"ts\" --exec \"ts-node --esm --transpileOnly ./src/server.js\"",
+        "build": "rm -rf dist && ncc build src/server.js -o dist",
+        "start": "NODE_ENV=\"production\" node dist/src/server.js"
     },
     "dependencies": {
         "ajv": "^8.12.0",
