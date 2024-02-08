@@ -1,5 +1,5 @@
 import { AbiCoder, EventLog } from "ethers";
-import { connectDB } from "../db/config/mongoose.ts";
+import { connectDB } from "../db/config/mongoose.js";
 import { withGlobalTransaction } from "../db/operations/atomic.ts";
 import { readAllIssuers } from "../db/operations/read.js";
 import { updateIssuerById } from "../db/operations/update.js";

@@ -1,12 +1,12 @@
 import axios from "axios";
-import { connectDB } from "../config/mongoose.ts";
+import { connectDB } from "../config/mongoose.js";
 import StockIssuance from "../db/objects/transactions/issuance/StockIssuance.js";
 import { stockCancel } from "./sampleData.js";
 connectDB();
 
 const main = async () => {
     const lastStockIssuance = await StockIssuance.find().sort({ updatedAt: -1 }).limit(1);
-    if (!lastStockIssuance || !lastStockIssuance.length) throw Error("No Issuance Exist")
+    if (!lastStockIssuance || !lastStockIssuance.length) throw Error("No Issuance Exist");
 
     const { issuer, security_id, stakeholder_id, stock_class_id, quantity } = lastStockIssuance[0];
 

@@ -1,5 +1,5 @@
 import express, { json, urlencoded } from "express";
-import { connectDB } from "./db/config/mongoose.ts";
+import { connectDB } from "./db/config/mongoose.js";
 
 import { startEventProcessing, stopEventProcessing } from "./chain-operations/transactionPoller.ts";
 
