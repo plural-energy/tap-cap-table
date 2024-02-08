@@ -1,9 +1,8 @@
 import { AbiCoder, EventLog } from "ethers";
-import { connectDB } from "../db/config/mongoose";
-import { withGlobalTransaction } from "../db/operations/atomic";
+import { withGlobalTransaction } from "../db/operations/atomic.js";
 import { readAllIssuers } from "../db/operations/read.js";
 import { updateIssuerById } from "../db/operations/update.js";
-import { getIssuerContract } from "../utils/caches";
+import { getIssuerContract } from "../utils/caches.js";
 import sleep from "../utils/sleep.js";
 import { verifyIssuerAndSeed } from "./seed.js";
 import {
@@ -102,7 +101,12 @@ const processEvents = async (dbConn, contract, provider, issuer, txHelper, final
     const { number: latestBlock } = await provider.getBlock(finalizedOnly ? "finalized" : "latest");
     // console.log("Processing for issuer", {issuerId, lastProcessedBlock, deployedTxHash, latestBlock});
     if (lastProcessedBlock === null) {
-        const receipt = await provider.getTransactionReceipt(deployedTxHash);
+        let receipt;
+        try {
+            receipt = await provider.getTransactionReceipt(deployedTxHash);
+        } catch (error) {
+            console.error("Error fetching deployment receipt", { deployedTxHash, error });
+        }
         if (!receipt) {
             console.error("Deployment receipt not found");
             return;
