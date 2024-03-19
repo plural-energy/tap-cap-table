@@ -20,6 +20,10 @@ export const readStakeholderById = async (id) => {
     return await findById(Stakeholder, id);
 };
 
+export const readStakeholderByIssuerAssignedId = async (id) => {
+    return await find(Stakeholder, { issuerAssignedId: id }).populate("transaction");
+};
+
 export const readStockClassById = async (id) => {
     return await findById(StockClass, id);
 };
