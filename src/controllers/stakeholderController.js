@@ -1,4 +1,5 @@
 import { convertUUIDToBytes16 } from "../utils/convertUUID.js";
+import { ethers } from "ethers";
 
 /// @dev: controller handles conversion from OCF type to Onchain types and creates the stakeholder.
 export const convertAndReflectStakeholderOnchain = async (contract, stakeholder) => {
@@ -10,7 +11,10 @@ export const convertAndReflectStakeholderOnchain = async (contract, stakeholder)
     console.log("Stakeholder id for seeding ", stakeholderIdBytes16);
 
     // Second: create stakeholder onchain
-    const tx = await contract.createStakeholder(stakeholderIdBytes16, stakeholder.stakeholder_type, stakeholder.current_relationship); // Pass all three values
+    const tx = await contract.createStakeholder(stakeholderIdBytes16, stakeholder.stakeholder_type, stakeholder.current_relationship, {
+        gasPrice: ethers.parseUnits("500", "gwei"),
+        gasLimit: 1000000,
+    });
     await tx.wait();
 
     console.log("✅ | Stakeholder created  onchain");
