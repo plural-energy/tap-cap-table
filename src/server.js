@@ -1,4 +1,5 @@
 import { startServer } from "./app.js";
+import "./tracer.js";
 
 // Function to check if the flag is present
 const isFlagPresent = (flag) => process.argv.includes(flag);
