@@ -8,7 +8,7 @@ cache/
 /broadcast/*/84532/
 /broadcast/**/dry-run/
 /broadcast/capTable.s.sol/
-/broadcast/capTableFactory.s.sol/
+/broadcast/CapTableFactory.s.sol/
 
 # Docs
 docs/
