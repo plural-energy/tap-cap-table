@@ -13,4 +13,6 @@ cache/
 # Docs
 docs/
 
+deployments
+
 .env
