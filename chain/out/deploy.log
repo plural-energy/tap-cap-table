@@ -1,138 +1,91 @@
-Compiling 81 files with 0.8.20
-Solc 0.8.20 finished in 7.38s
-Compiler run [32msuccessful![0m
+Compiling 60 files with Solc 0.8.20
+Solc 0.8.20 finished in 4.15s
+Compiler run successful!
 Traces:
-  [5580807] [32mDeployCapTableFactoryDeployLocalScript[0m::[32mrun[0m()[33m[0m
-    ├─ [0] [32mconsole[0m::[32mlog[0m("Deploying CapTableFactory and CapTable implementation")[33m [staticcall][0m
-    │   └─ [32m← [0m()
-    ├─ [0] [34mVM[0m::[34mstartBroadcast[0m(<pk>)[33m[0m
-    │   └─ [34m← [0m()
-    ├─ [4479062] [33m→ [0m[33mnew[0m CapTable@0x5C1CE1D82624Fb2dA765bDFFf40125B5c552A8f1
-    │   ├─ emit [36mInitialized[0m(version: 255)
-    │   └─ [32m← [0m22252 bytes of code
-    ├─ [0] [32mconsole[0m::[32mlog[0m("CapTable implementation deployed at:", CapTable: [0x5C1CE1D82624Fb2dA765bDFFf40125B5c552A8f1])[33m [staticcall][0m
-    │   └─ [32m← [0m()
-    ├─ [0] [34mVM[0m::[34mstopBroadcast[0m()[33m[0m
-    │   └─ [34m← [0m()
-    ├─ [0] [34mVM[0m::[34mstartBroadcast[0m(<pk>)[33m[0m
-    │   └─ [34m← [0m()
-    ├─ [1020719] [33m→ [0m[33mnew[0m CapTableFactory@0x4F5EB336941Cb7599528c0f53b073124D97B7b96
-    │   ├─ emit [36mOwnershipTransferred[0m(previousOwner: 0x0000000000000000000000000000000000000000, newOwner: 0xef22FA887723A493b2A4bCCA1d6e6FB39dD3dCF6)
-    │   ├─ [203044] [33m→ [0m[33mnew[0m UpgradeableBeacon@0x2A06dB188ed62e704f591566387161eF08DafEbB
-    │   │   ├─ emit [36mOwnershipTransferred[0m(previousOwner: 0x0000000000000000000000000000000000000000, newOwner: CapTableFactory: [0x4F5EB336941Cb7599528c0f53b073124D97B7b96])
-    │   │   └─ [32m← [0m783 bytes of code
-    │   └─ [32m← [0m3582 bytes of code
-    ├─ [0] [32mconsole[0m::[32mlog[0m("CapTableFactory deployed at:", CapTableFactory: [0x4F5EB336941Cb7599528c0f53b073124D97B7b96])[33m [staticcall][0m
-    │   └─ [32m← [0m()
-    ├─ [0] [34mVM[0m::[34mstopBroadcast[0m()[33m[0m
-    │   └─ [34m← [0m()
-    └─ [32m← [0m()
+  [5580807] DeployCapTableFactoryDeployLocalScript::run()
+    ├─ [0] console::log("Deploying CapTableFactory and CapTable implementation") [staticcall]
+    │   └─ ← [Stop] 
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return] 
+    ├─ [4479062] → new CapTable@0x51DfD9a51cFD94A36711e99B9e2b20317C0611f1
+    │   ├─ emit Initialized(version: 255)
+    │   └─ ← [Return] 22252 bytes of code
+    ├─ [0] console::log("CapTable implementation deployed at:", CapTable: [0x51DfD9a51cFD94A36711e99B9e2b20317C0611f1]) [staticcall]
+    │   └─ ← [Stop] 
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    ├─ [0] VM::startBroadcast(<pk>)
+    │   └─ ← [Return] 
+    ├─ [1020719] → new CapTableFactory@0x5949DEa0AFCc07E24620d80806e072250B3E7168
+    │   ├─ emit OwnershipTransferred(previousOwner: 0x0000000000000000000000000000000000000000, newOwner: 0xD3F5d66795A10bFE391C60b7dbcb84d2dDf48c89)
+    │   ├─ [203044] → new UpgradeableBeacon@0x3AaFfa03e52460B6cf96bD197E3eaA7A38A9C13a
+    │   │   ├─ emit OwnershipTransferred(previousOwner: 0x0000000000000000000000000000000000000000, newOwner: CapTableFactory: [0x5949DEa0AFCc07E24620d80806e072250B3E7168])
+    │   │   └─ ← [Return] 783 bytes of code
+    │   └─ ← [Return] 3582 bytes of code
+    ├─ [0] console::log("CapTableFactory deployed at:", CapTableFactory: [0x5949DEa0AFCc07E24620d80806e072250B3E7168]) [staticcall]
+    │   └─ ← [Stop] 
+    ├─ [0] VM::stopBroadcast()
+    │   └─ ← [Return] 
+    └─ ← [Stop] 
 
 
-[32mScript ran successfully.[0m
+Script ran successfully.
 
 == Logs ==
   Upgrading CapTableFactory with CapTable implementation
   Deploying CapTableFactory and CapTable implementation
-  CapTable implementation deployed at: 0x5C1CE1D82624Fb2dA765bDFFf40125B5c552A8f1
-  CapTableFactory deployed at: 0x4F5EB336941Cb7599528c0f53b073124D97B7b96
+  CapTable implementation deployed at: 0x51DfD9a51cFD94A36711e99B9e2b20317C0611f1
+  CapTableFactory deployed at: 0x5949DEa0AFCc07E24620d80806e072250B3E7168
 
 ## Setting up 1 EVM.
 ==========================
 Simulated On-chain Traces:
 
-  [433093] [33m→ [0m[33mnew[0m Adjustment@0xFDb553097628aB607013ba99D0CbF1ed44685186
-    └─ [32m← [0m2163 bytes of code
+  [466023] Create2Deployer::create2()
+    ├─ [433093] → new Adjustment@0x2568098Fd3A0D4Fe459Fd282aEE6e492d5d3935E
+    │   └─ ← [Return] 2163 bytes of code
+    └─ ← [Return] 0x2568098fd3a0d4fe459fd282aee6e492d5d3935e
 
-  [205073] [33m→ [0m[33mnew[0m DeleteContext@0x54183d720fECBe9BA547A44a56062c67831Ef1F5
-    └─ [32m← [0m1024 bytes of code
+  [237564] Create2Deployer::create2()
+    ├─ [205073] → new DeleteContext@0xFB6c040348Ca16589b83ccA345F88B118D22D65d
+    │   └─ ← [Return] 1024 bytes of code
+    └─ ← [Return] 0xfb6c040348ca16589b83cca345f88b118d22d65d
 
-  [2299886] [33m→ [0m[33mnew[0m StockLib@0xa414C3E55C65Ebf3098BeF8498BC82172001666a
-    └─ [32m← [0m11487 bytes of code
+  [2336553] Create2Deployer::create2()
+    ├─ [2299886] → new StockLib@0xA1c6003960907c96d6D6a42EcE63253646E0E2BB
+    │   └─ ← [Return] 11487 bytes of code
+    └─ ← [Return] 0xa1c6003960907c96d6d6a42ece63253646e0e2bb
 
-  [4479062] [33m→ [0m[33mnew[0m CapTable@0x5C1CE1D82624Fb2dA765bDFFf40125B5c552A8f1
-    ├─ emit [36mInitialized[0m(version: 255)
-    └─ [32m← [0m22252 bytes of code
+  [4479062] → new CapTable@0x51DfD9a51cFD94A36711e99B9e2b20317C0611f1
+    ├─ emit Initialized(version: 255)
+    └─ ← [Return] 22252 bytes of code
 
-  [1023219] [33m→ [0m[33mnew[0m CapTableFactory@0x4F5EB336941Cb7599528c0f53b073124D97B7b96
-    ├─ emit [36mOwnershipTransferred[0m(previousOwner: 0x0000000000000000000000000000000000000000, newOwner: 0xef22FA887723A493b2A4bCCA1d6e6FB39dD3dCF6)
-    ├─ [205544] [33m→ [0m[33mnew[0m UpgradeableBeacon@0x2A06dB188ed62e704f591566387161eF08DafEbB
-    │   ├─ emit [36mOwnershipTransferred[0m(previousOwner: 0x0000000000000000000000000000000000000000, newOwner: CapTableFactory: [0x4F5EB336941Cb7599528c0f53b073124D97B7b96])
-    │   └─ [32m← [0m783 bytes of code
-    └─ [32m← [0m3582 bytes of code
+  [1023219] → new CapTableFactory@0x5949DEa0AFCc07E24620d80806e072250B3E7168
+    ├─ emit OwnershipTransferred(previousOwner: 0x0000000000000000000000000000000000000000, newOwner: 0xD3F5d66795A10bFE391C60b7dbcb84d2dDf48c89)
+    ├─ [205544] → new UpgradeableBeacon@0x3AaFfa03e52460B6cf96bD197E3eaA7A38A9C13a
+    │   ├─ emit OwnershipTransferred(previousOwner: 0x0000000000000000000000000000000000000000, newOwner: CapTableFactory: [0x5949DEa0AFCc07E24620d80806e072250B3E7168])
+    │   └─ ← [Return] 783 bytes of code
+    └─ ← [Return] 3582 bytes of code
 
 
 ==========================
 
-Chain 11155420
+Chain 8453
 
-Estimated gas price: 3.00000071 gwei
+Estimated gas price: 0.02655155 gwei
 
-Estimated total gas used for script: 12181238
+Estimated total gas used for script: 12502898
 
-Estimated amount required: 0.03654372264867898 ETH
+Estimated amount required: 0.0003319713213919 ETH
 
 ==========================
-
-###
-Finding wallets for all the necessary addresses...
-##
-Sending transactions [0 - 4].
-
-Transactions saved to: /Users/kentkolze/projects/plural-tap-cap-table/chain/broadcast/CapTableFactory.s.sol/11155420/run-latest.json
-
-Sensitive values saved to: /Users/kentkolze/projects/plural-tap-cap-table/chain/cache/CapTableFactory.s.sol/11155420/run-latest.json
-
-##
-Waiting for receipts.
-
-##### optimism-sepolia
-✅  [Success]Hash: 0x7f4b2bd79e208ea5067a475532954ee9d5f5db886793ac4b5db71f1c07456ed1
-Contract Address: 0xFDb553097628aB607013ba99D0CbF1ed44685186
-Block: 12263013
-Paid: 0.00156181518429417 ETH (520605 gas * 3.000000354 gwei)
-
-
-##### optimism-sepolia
-✅  [Success]Hash: 0x56b42ea112a1514c94caade790f68592e581f2e1fc0ee70fcf24c9ea5998fea3
-Contract Address: 0x54183d720fECBe9BA547A44a56062c67831Ef1F5
-Block: 12263013
-Paid: 0.000823659097191762 ETH (274553 gas * 3.000000354 gwei)
-
-
-##### optimism-sepolia
-✅  [Success]Hash: 0xa8e6de20efc6b7e3c08c34adb1c87209e499c6ca741afc62b894f8be7714ae8f
-Contract Address: 0xa414C3E55C65Ebf3098BeF8498BC82172001666a
-Block: 12263013
-Paid: 0.007603428897204504 ETH (2534476 gas * 3.000000354 gwei)
-
-
-##### optimism-sepolia
-✅  [Success]Hash: 0xfb5dff83610f2cb1fd0ab6a7856e1d1e1d0863fa6ab6ba477e23b89120789fb0
-Contract Address: 0x5C1CE1D82624Fb2dA765bDFFf40125B5c552A8f1
-Block: 12263013
-Paid: 0.014661193730020656 ETH (4887064 gas * 3.000000354 gwei)
-
-
-##### optimism-sepolia
-✅  [Success]Hash: 0xefd2ad56bbb52c2b38d1eadf3e7c1d8c6a88e389a05a4be4c619e77cdcc6904a
-Contract Address: 0x4F5EB336941Cb7599528c0f53b073124D97B7b96
-Block: 12263013
-Paid: 0.00346867540930365 ETH (1156225 gas * 3.000000354 gwei)
-
-
-Transactions saved to: /Users/kentkolze/projects/plural-tap-cap-table/chain/broadcast/CapTableFactory.s.sol/11155420/run-latest.json
-
-Sensitive values saved to: /Users/kentkolze/projects/plural-tap-cap-table/chain/cache/CapTableFactory.s.sol/11155420/run-latest.json
-
 
 
 ==========================
 
 ONCHAIN EXECUTION COMPLETE & SUCCESSFUL.
-Total Paid: 0.028118772318014742 ETH (9372923 gas * avg 3.000000354 gwei)
 
-Transactions saved to: /Users/kentkolze/projects/plural-tap-cap-table/chain/broadcast/CapTableFactory.s.sol/11155420/run-latest.json
+Transactions saved to: /Users/alexfong/dev/plural-energy/tap-fork/tap-cap-table/chain/broadcast/CapTableFactory.s.sol/8453/run-latest.json
 
-Sensitive values saved to: /Users/kentkolze/projects/plural-tap-cap-table/chain/cache/CapTableFactory.s.sol/11155420/run-latest.json
+Sensitive values saved to: /Users/alexfong/dev/plural-energy/tap-fork/tap-cap-table/chain/cache/CapTableFactory.s.sol/8453/run-latest.json
 
