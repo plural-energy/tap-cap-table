@@ -26,7 +26,7 @@ trap "rm $TEMP" EXIT
 
 set -x
 cd chain
-forge script script/CapTableFactory.s.sol:DeployCapTableFactoryDeployLocalScript --broadcast --fork-url $RPC_URL --ast --out $deployment_dir -vvvv > $log_file 2>&1
+forge script script/CapTableFactory.s.sol:DeployCapTableFactoryDeployLocalScript --broadcast --fork-url $RPC_URL --verify --verifier-url $EXPLORER_URL --etherscan-api-key $EXPLORER_API_KEY --ast --out $deployment_dir -vvvv > $log_file 2>&1
 
 rm -rf out
 cp -r $deployment_dir out
